@@ -124,6 +124,23 @@ VALUES
 <br>SELECT * FROM users;
 <br>SELECT * FROM visits;</br>
 
+<br>1. Список уникальных классов. Вывести только названия. 
+#### Запрос 
+SELECT DISTINCT class_name
+FROM visits;
+
+2. Количество часов, проведенных на занятиях, для каждого пользователя. Вывести фамилию, имя и количество часов.
+#### Запрос 
+<br>SELECT users.user_surname, users.user_name, SUM(visits.hours_spent) AS total_hours_spent 
+<br>FROM users JOIN visits ON users.id_user = visits.id_user 
+<br>GROUP BY users.user_surname, users.user_name;</br> 
+
+3. Средний возраст пользователей, посещающих класс Flex.
+#### Запрос
+<br>SELECT AVG(users.age) AS average_age 
+<br>FROM users JOIN visits ON users.id_user = visits.id_user 
+<br>WHERE visits.class_name = 'Flex';</br>
+
 <img src="https://pa1.narvii.com/7446/9f8a6f798ba73c14efc81d374004d266739c4909r1-400-50_hq.gif" height="32" width="1000"> 
 
 ###  ⚡ Задача 3 ⚡
