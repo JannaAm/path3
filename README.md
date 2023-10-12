@@ -95,7 +95,7 @@ INNER JOIN Tickets t ON d.ID = t.id_destination;
 <br>user_name VARCHAR(255), 
 <br>user_surname VARCHAR(255), 
 <br>user_weight DECIMAL(5,2), 
-<br>age INTEGER);</br>
+<br>age NUMERIC);</br>
 
 <br>CREATE TABLE visits 
 <br>( id_visit INTEGER, 
