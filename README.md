@@ -90,6 +90,40 @@ INNER JOIN Tickets t ON d.ID = t.id_destination;
 2. Количество часов, проведенных на занятиях, для каждого пользователя. Вывести фамилию, имя и количество часов.
 3. Средний возраст пользователей, посещающих класс Flex.
 
+<br>CREATE TABLE users 
+<br>( id_user INTEGER, 
+<br>user_name VARCHAR(255), 
+<br>user_surname VARCHAR(255), 
+<br>user_weight DECIMAL(5,2), 
+<br>age INTEGER);</br>
+
+<br>CREATE TABLE visits 
+<br>( id_visit INTEGER, 
+<br>id_user INTEGER, 
+<br>hours_spent INTEGER, 
+<br>class_name VARCHAR(255), 
+<br>visit_date DATE);</br>
+
+<br>INSERT INTO users (id_user, user_name, user_surname, user_weight, age) 
+<br>VALUES 
+<br>(1, 'Anna', 'Ivanova', 56, 18), 
+<br>(2, 'Igor', 'Bulik', 75, 45), 
+<br>(3, 'Max', 'Nikolsky', 67, 16), 
+<br>(4, 'Kate', 'Svet', 66, 30);</br>
+
+
+<br>INSERT INTO visits (id_visit, id_user, hours_spent, class_name, visit_date) 
+VALUES 
+<br>(1, 1, 1, 'Zumba', '2023-06-30'), 
+<br>(2, 3, 2, 'Swimming pool', '2023-07-04'), 
+<br>(3, 5, 1, 'Flex', '2023-07-09'), 
+<br>(4, 1, 3, 'Flex', '2023-07-15'), 
+<br>(5, 5, 2, 'Step', '2023-07-20'), 
+<br>(6, 2, 1.5, 'Football', '2023-07-22');</br>
+
+<br>SELECT * FROM users;
+<br>SELECT * FROM visits;</br>
+
 <img src="https://pa1.narvii.com/7446/9f8a6f798ba73c14efc81d374004d266739c4909r1-400-50_hq.gif" height="32" width="1000"> 
 
 ###  ⚡ Задача 3 ⚡
