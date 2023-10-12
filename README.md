@@ -152,4 +152,57 @@ FROM visits;
 2. Для каждого автора найти сумму напечатанных страниц. Вывести полное имя автора и сумму страниц.
 3. Подсчитать количество книг авторов каждого века. Вывести век и количество книг.
 
+<br>CREATE TABLE book
+<br>(id_book INTEGER, 
+<br>title VARCHAR, 
+<br>id_author INTEGER,
+<br>pages INTEGER,
+<br>year_puplish DATE);</br>
+
+<br>CREATE TABLE author 
+<br>(id_author INTEGER,
+<br>full_name VARCHAR,
+<br>century INTEGER);</br>
+
+<br>INSERT INTO book (id_book, title, id_author, pages, year_puplish) 
+<br>VALUES 
+<br>(1, 'Harry Potter and the Philosopher''s Stone', 1, 327, '1997-06-26'),
+<br>(2, 'To Kill a Mockingbird', 2, 281, '1960-07-11'),
+<br>(3, 'The Great Gatsby', 3, 180, '1925-04-10'),
+<br>(4, 'Pride and Prejudice', 4, 279, '1813-01-28'),
+<br>(5, '1984', 5, 328, '1949-06-08');</br>
+
+<br>INSERT INTO author (id_author, full_name, century)
+<br>VALUES
+<br>(1, 'J.K. Rowling', 20),
+<br>(2, 'Harper Lee', 20),
+<br>(3, 'F. Scott Fitzgerald', 20),
+<br>(4, 'Jane Austen', 19),
+<br>(5, 'George Orwell', 20);</br>
+
+<br>SELECT * FROM book;
+<br>SELECT * FROM author;</br>
+
+1. Уникальные названия всех книг, опубликованных после 1990 года. Вывести только названия.
+#### Запрос
+<br>SELECT DISTINCT title
+<br>FROM book
+<br>WHERE year_puplish > '1990-12-31'; </br>
+
+
+2. Для каждого автора найти сумму напечатанных страниц. Вывести полное имя автора и сумму страниц.
+#### Запрос
+<br>SELECT author.full_name, SUM(book.pages) AS total_pages
+<br>FROM book
+<br>JOIN author ON book.id_author = author.id_author
+<br>GROUP BY author.full_name;</br>
+
+
+3. Подсчитать количество книг авторов каждого века. Вывести век и количество книг.
+#### Запрос
+<br>SELECT author.century, COUNT(book.id_book) AS book_count
+<br>FROM book
+<br>JOIN author ON book.id_author = author.id_author
+<br>GROUP BY author.century;</br>
+
 <img src="https://pa1.narvii.com/7446/9f8a6f798ba73c14efc81d374004d266739c4909r1-400-50_hq.gif" height="32" width="1000"> 
