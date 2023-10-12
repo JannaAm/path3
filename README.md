@@ -17,6 +17,47 @@
 2. Дополните предыдущий запрос: ограничьте маршруты статусом «Без визы».
 3. Найдите маршруты, максимальная цена которых выше общей средней. Общая средняя находится как среднее значение lowest_price и highest_price. Вывести названия и высшую цену.
 
+<br>CREATE TABLE Destination ( 
+<br>ID INTEGER , 
+<br>name VARCHAR(255), 
+<br>id_status INTEGER);</br>
+
+<br>CREATE TABLE Tickets (
+<br>ID INTEGER, 
+<br>id_destination INTEGER, 
+<br>lowest_price DECIMAL(10,2), 
+<br>highest_price DECIMAL(10,2));</br>
+
+<br>CREATE TABLE Status ( 
+<br>ID INTEGER, 
+<br>name VARCHAR(255) );</br>
+
+<br>INSERT INTO Destination (ID, name, id_status) 
+<br>VALUES 
+<br>(1, 'Paris', 1), 
+<br>(2, 'London', 2), 
+<br>(3, 'New York', 1), 
+<br>(4, 'Tokyo', 3), 
+<br>(5, 'Sydney', 2);</br>
+
+<br>INSERT INTO Tickets (ID, id_destination, lowest_price, highest_price) 
+<br>VALUES 
+<br>(1, 1, 100.00, 200.00), 
+<br>(2, 2, 150.00, 250.00), 
+<br>(3, 3, 200.00, 300.00), 
+<br>(4, 4, 250.00, 350.00), 
+<br>(5, 5, 300.00, 400.00);</br>
+
+<br>INSERT INTO Status (ID, name) 
+<br>VALUES 
+<br>(1, 'Available'), 
+<br>(2, 'Sold'), 
+<br>(3, 'Reserved');</br>
+
+<br>SELECT * FROM Destination;
+<br>SELECT * FROM Tickets;
+<br>SELECT * FROM Status;</br>
+
 ### 🚩 Задача 2 🚩
 #### Дано : две таблицы.
 
