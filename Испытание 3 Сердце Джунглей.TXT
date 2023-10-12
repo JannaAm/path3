@@ -1,0 +1,59 @@
+Задача 1:
+
+1. Уникальные названия маршрутов (destination.name), для которых существуют билеты (есть запись в tickets). Вывести только названия.
+
+SELECT DISTINCT d.name FROM Destination d 
+INNER JOIN Tickets t ON d.ID = t.id_destination;
+
+
+2. Дополните предыдущий запрос: ограничьте маршруты статусом «No visa»
+
+SELECT DISTINCT d.name FROM Destination d 
+INNER JOIN Tickets t ON d.ID = t.id_destination 
+INNER JOIN Status s ON d.id_status = s.ID WHERE s.name = 'No visa';
+
+3. Найдите маршруты, максимальная цена которых выше общей средней. Общая средняя находится как среднее значение lowest_price и highest_price. Вывести названия и высшую цену.
+
+SELECT d.name, MAX(t.highest_price) AS highest_price FROM Destination d 
+INNER JOIN Tickets t ON d.ID = t.id_destination WHERE (t.highest_price + t.lowest_price)/2 > 
+(SELECT AVG(highest_price + lowest_price)/2 FROM Tickets) 
+GROUP BY d.name;
+
+Задача 2:
+1. Список уникальных классов. Вывести только названия. 
+
+SELECT DISTINCT class_name
+FROM visits;
+
+2. Количество часов, проведенных на занятиях, для каждого пользователя. Вывести фамилию, имя и количество часов.
+
+SELECT users.user_surname, users.user_name, SUM(visits.hours_spent) AS total_hours_spent 
+FROM users JOIN visits ON users.id_user = visits.id_user 
+GROUP BY users.user_surname, users.user_name; 
+
+3. Средний возраст пользователей, посещающих класс Flex.
+
+SELECT AVG(users.age) AS average_age 
+FROM users JOIN visits ON users.id_user = visits.id_user 
+WHERE visits.class_name = 'Flex';
+(Не понимаю, почему у меня в возрасте куча нулей, я прям в шоке - таблицами играла и так и сяк, то есть переписывала.)  
+
+Задача 3 
+1. Уникальные названия всех книг, опубликованных после 1990 года. Вывести только названия.
+SELECT DISTINCT title
+FROM book
+WHERE year_puplish > '1990-12-31'; 
+
+
+2. Для каждого автора найти сумму напечатанных страниц. Вывести полное имя автора и сумму страниц.
+SELECT author.full_name, SUM(book.pages) AS total_pages
+FROM book
+JOIN author ON book.id_author = author.id_author
+GROUP BY author.full_name;
+
+
+3. Подсчитать количество книг авторов каждого века. Вывести век и количество книг.
+SELECT author.century, COUNT(book.id_book) AS book_count
+FROM book
+JOIN author ON book.id_author = author.id_author
+GROUP BY author.century;
