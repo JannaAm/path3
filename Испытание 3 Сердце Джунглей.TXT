@@ -14,10 +14,11 @@ INNER JOIN Status s ON d.id_status = s.ID WHERE s.name = 'No visa';
 
 3. Найдите маршруты, максимальная цена которых выше общей средней. Общая средняя находится как среднее значение lowest_price и highest_price. Вывести названия и высшую цену.
 
-SELECT d.name, MAX(t.highest_price) AS highest_price FROM Destination d 
-INNER JOIN Tickets t ON d.ID = t.id_destination WHERE (t.highest_price + t.lowest_price)/2 > 
-(SELECT AVG(highest_price + lowest_price)/2 FROM Tickets) 
-GROUP BY d.name;
+SELECT Destination.name AS destination_name,
+Tickets.highest_price FROM Tickets 
+JOIN Destination ON Tickets.id_destination = Destination.id 
+WHERE 
+Tickets.highest_price > (SELECT AVG(lowest_price + highest_price)/ 2 FROM Tickets)
 
 Задача 2:
 1. Список уникальных классов. Вывести только названия. 
