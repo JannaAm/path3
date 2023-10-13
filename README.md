@@ -73,10 +73,11 @@ INNER JOIN Tickets t ON d.ID = t.id_destination;
 3. Найдите маршруты, максимальная цена которых выше общей средней.
 <br>Общая средняя находится как среднее значение lowest_price и highest_price. Вывести названия и высшую цену.</br>
 #### Запрос
-<br>SELECT d.name, MAX(t.highest_price) AS highest_price FROM Destination d 
-<br>INNER JOIN Tickets t ON d.ID = t.id_destination WHERE (t.highest_price + t.lowest_price)/2 > 
-<br>(SELECT AVG(highest_price + lowest_price)/2 FROM Tickets) 
-<br>GROUP BY d.name;</br>
+<br>SELECT Destination.name AS destination_name,
+<br>Tickets.highest_price
+<br>FROM Tickets 
+<br>JOIN Destination ON Tickets.id_destination = Destination.id 
+<br>WHERE Tickets.highest_price > (SELECT AVG(lowest_price + highest_price)/ 2 FROM Tickets)</br>
 
 <img src="https://pa1.narvii.com/7446/9f8a6f798ba73c14efc81d374004d266739c4909r1-400-50_hq.gif" height="32" width="1000"> 
 
